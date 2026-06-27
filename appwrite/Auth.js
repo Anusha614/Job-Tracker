@@ -10,8 +10,8 @@ export class AuthService {
     constructor () {
 
         this.client
-        this.setProject(conf.appwriteProjectID)
-        this.setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectID)
+            .setEndpoint(conf.appwriteUrl)
         this.account = new Account(this.client)
         
     }
@@ -25,7 +25,7 @@ export class AuthService {
         )
 
         if (user) {
-            return await this.Login ({email, password})
+            return this.Login ({email, password})
         } else {
             return user
         }

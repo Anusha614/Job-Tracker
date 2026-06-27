@@ -1,12 +1,13 @@
-import AllApplicationPg from "./pages/allApplications_pg";
-import SignUpPg from "./pages/signup_pg";
-import LoginPg from "./pages/login_pg";
-import ApplicationPg from "./pages/Application_pg";
+//pages
+export { default as AllApplicationPg } from "./pages/allApplications_pg";
+export { default as SignUpPg } from "./pages/signup_pg";
+export { default as LoginPg } from "./pages/login_pg";
+export { default as ApplicationPg } from "./pages/Application_pg";
 
-import Input from './components/Input'
-import Button from './components/Button'
+//reusable components
+export { default as Input } from './components/Input';
+export { default as Button } from './components/Button';
 
-import LoginForm from "./components/forms/Login_form";
-
-
-export {AllApplicationPg, SignUpPg, LoginPg, ApplicationPg, Input, Button, LoginForm}
+//forms
+export { default as LoginForm } from "./components/forms/Login_form";
+export { default as SignUpForm } from "./components/forms/SignUp_form";
