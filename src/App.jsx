@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import {Header, Footer} from './index'
 
 
 
@@ -8,7 +9,9 @@ function App() {
 
   return (
     <>
+    <Header/>
       <Outlet/>
+      <Footer/>
     </>
   )
 }

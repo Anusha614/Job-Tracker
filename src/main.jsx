@@ -5,7 +5,7 @@ import App from './App.jsx'
 import {Provider} from 'react-redux'
 import store from '../store/store.js'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-import {SignUpPg, AllApplicationPg, ApplicationPg, LoginPg} from './index.js'
+import {SignUpPg, AllApplicationPg, ApplicationPg, LoginPg, Home} from './index.js'
 
 
 const router = createBrowserRouter ([
@@ -14,6 +14,10 @@ const router = createBrowserRouter ([
     element: <App/>,
 
     children: [
+      {
+        path: '/',
+        element: <Home/>
+      },
       {
         path: '/all-applications',
         element: <AllApplicationPg/>
