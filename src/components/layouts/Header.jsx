@@ -35,6 +35,11 @@ export default function Header () {
       slug: '/application/:id',
       active: authstatus
     },
+    {
+      name: 'Create Application',
+      slug: '/add-application',
+      active: authstatus
+    }
    
   ]
 

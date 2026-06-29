@@ -2,8 +2,9 @@ import react,{useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {Input, Button} from '../../index'
 import {useNavigate, Link} from 'react-router-dom'
-import authService from '../../../../MegaBlog/Appwrite/Auth'
+import authService from '../../../appwrite/Auth'
 import {useDispatch} from 'react-redux'
+import { login } from '../../../store/AuthSlice'
 
 export default function SignUpForm () {
 
@@ -19,13 +20,19 @@ export default function SignUpForm () {
 
         try {
 
-            const userData = await authService.createAccount(data)
+            const userData = await authService.CreateAccount(
+    data.email,
+    data.password,
+    data.name
+);
 
             if (userData) {
-               const currentUser = await authService.getCurrentUser()
+                
+               const currentUser = await authService.GetCurrentUser()
 
-               if (currentUser) {dispatch(login(currentUser))
-               {/*navigate('/')*/}
+               if (currentUser) {
+                dispatch(login({ userData: currentUser }));
+               navigate('/')
                alert('You successfully signed up!')
                }
             }

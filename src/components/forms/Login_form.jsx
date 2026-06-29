@@ -4,6 +4,7 @@ import {Input, Button} from '../../index'
 import authService from "../../../appwrite/Auth";
 import { useDispatch} from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { login } from "../../../store/AuthSlice";
 
 export default function LoginForm () {
 
@@ -16,17 +17,21 @@ export default function LoginForm () {
         setError('')
         try{
 
-            const session = await authService.Login(userData)
+            const session = await authService.Login(
+    userData.email,
+    userData.password
+);
 
             if (session) {
                 const currentUser = await authService.GetCurrentUser()
 
                 if (currentUser) {
-                    dispatch(login(currentUser))
-                    {/*navigate('/')*/}
-                     alert('You successfully logged in!')
-                }
-            }
+                    dispatch(login({ userData: currentUser }));
+                    navigate('/');
+                    return;
+                     
+                }}
+            
         } catch (error) {
             setError(error.message)
             alert(error)

@@ -25,12 +25,13 @@ export class AuthService {
         )
 
         if (user) {
-            return this.Login ({email, password})
+            return this.Login (email, password)
         } else {
             return user
         }
     } catch (error) {
         console.log("Auth :: CreateAccount :: error")
+        throw error
     }
     }
 
@@ -41,6 +42,7 @@ export class AuthService {
         )
     } catch (error) {
         console.log ("Auth :: Login :: error")
+        throw error
     }
     }
 
@@ -49,6 +51,7 @@ export class AuthService {
             await this.account.deleteSessions()
         } catch (error) {
             console.log ("Auth :: Logout :: error")
+            throw error
         }
     }
 
@@ -57,6 +60,7 @@ export class AuthService {
             return await this.account.get()
         } catch (error) {
             console.log("Auth :: getCurrentUser :: error")
+            throw error
         }
         return null
     }

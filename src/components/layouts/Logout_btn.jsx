@@ -2,7 +2,7 @@ import React from "react";
 import authService from "../../../appwrite/Auth";
 import { Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../../MegaBlog/src/store/authSlice";
+import { logout } from "../../../store/AuthSlice";
 
 export default function LogoutBtn () {
 
@@ -10,7 +10,7 @@ export default function LogoutBtn () {
 
     const logoutHandler = () => {
          authService.Logout().then(() => {
-            (dispatch(logout(logoutHandler)))
+            (dispatch(logout()))
          })
     }
 

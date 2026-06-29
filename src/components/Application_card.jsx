@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export default function JobCard({$id, company, role, status, dateApplied}) {
+export default function ApplicationCard({$id, company, role, status, dateApplied}) {
 
     const getBadgeColor = (status) => {
         switch (status.toLowerCase()) {

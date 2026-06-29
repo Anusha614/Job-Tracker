@@ -9,15 +9,15 @@ export class Config {
 
     constructor () {
         this.client
-        this.setEndpoint(conf.appwriteUrl)
-        this.setProject(conf.appwriteProjectID)
-        this.databases = new Databases(client)
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectID)
+        this.databases = new Databases(this.client)
     }
 
-    async CreateApplication (company, role, status, userID) {
+    async CreateApplication ({company, role, status, userID}) {
 
         try{
-            await this.databases.createDocument (
+            return await this.databases.createDocument (
                 conf.appwriteDatabaseID,
                 conf.appwriteTableID,
                 ID.unique(),
@@ -25,19 +25,24 @@ export class Config {
             )
         } catch (error) {
             console.log("Config :: CreateApplication :: error")
+            console.log(error);
+    console.log(error.message);
+    console.log(error.code);
+    console.log(error.type);
         }
     }
 
     async ListApplications (userID) {
 
         try {
-            await this.databases.listDocuments (
+            return await this.databases.listDocuments (
                 conf.appwriteDatabaseID,
-                conf.appwriteProjectID,
+                conf.appwriteTableID,
                 [Query.equal("userID", userID)]
             )
         } catch (error) {
             console.log ("Config :: GetApplications :: error")
+            throw error
         }
     }
 
@@ -51,6 +56,7 @@ export class Config {
             )
         } catch (error) {
             console.log ("Config :: GetApplication :: error")
+            throw error
         }
     }
 
@@ -59,12 +65,13 @@ export class Config {
         try {
            return await this.databases.updateDocument (
                 conf.appwriteDatabaseID,
-                conf.appwriteProjectID,
+                conf.appwriteTableID,
                 {company, status, role}
 
             )
         } catch (error) {
             console.log ("Config :: UpdateApplications :: error")
+            throw error
         }
     }
 
@@ -72,11 +79,12 @@ export class Config {
         try{
             await this.databases.deleteDocument (
                 conf.appwriteDatabaseID,
-                conf.appwriteProjectID,
+                conf.appwriteTableID,
                 documentId
             )
         } catch (error) {
             console.log("Cofig :: DeleteApplication :: error")
+            throw error
         }
     }
 
