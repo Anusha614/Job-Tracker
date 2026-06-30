@@ -5,8 +5,9 @@ import App from './App.jsx'
 import {Provider} from 'react-redux'
 import store from '../store/store.js'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-import {SignUpPg, AllApplicationPg, ApplicationPg, LoginPg, Home, AddApplicationPg} from './index.js'
-
+import {SignUpPg, AllApplicationPg, ApplicationPg, LoginPg, Home, AddApplicationPg, UpdateApplications} from './index.js'
+import UpdateApplicationPg from './pages/UpdateApplication_pg.jsx'
+import Protected from './AuthLayout.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -20,11 +21,12 @@ const router = createBrowserRouter ([
       },
       {
         path: '/all-applications',
-        element: <AllApplicationPg/>
-      },
-      {
-        path: '/application/:id',
-        element: <ApplicationPg/>
+        element: (
+          <Protected authentication>
+            {""}
+            <AllApplicationPg/>
+          </Protected>
+        )
       },
       {
         path: '/login',
@@ -36,7 +38,30 @@ const router = createBrowserRouter ([
       },
       {
         path: '/add-application',
-        element: <AddApplicationPg/>
+        element: (
+          <Protected authentication>
+            {""}
+            <AddApplicationPg/>
+          </Protected>
+        )
+      },
+      {
+        path: '/update-application/:slug',
+        element: (
+          <Protected authentication>
+            {""}
+            <UpdateApplicationPg/>
+          </Protected>
+        )
+      },
+      {
+        path: '/view-application/:slug',
+        element: (
+          <Protected authentication>
+            {""}
+            <ApplicationPg/>
+          </Protected>
+        )
       }
     ]
   }

@@ -32,8 +32,12 @@ export default function ApplicationCard({$id, company, role, status, dateApplied
 
                
                 <div className="card-actions justify-end mt-2">
-                    <button className="btn btn-sm btn-outline">Edit</button>
-                    <button className="btn btn-sm btn-primary">View Details</button>
+                    <Link to={`/update-application/${$id}`} className="btn btn-sm btn-outline">
+    Edit
+</Link>
+                   <Link to={`/view-application/${$id}`} className="btn btn-sm btn-outline">
+    View Detail
+</Link>
                 </div>
             </div>
         </div>

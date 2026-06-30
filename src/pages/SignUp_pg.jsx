@@ -1,8 +1,10 @@
 import React from "react";
-import {SignUpForm} from "../index";
+import {SignUpForm, AuthCardUI} from "../index";
 
 export default function SignUpPg () {
     return (
-        <><SignUpForm/></>
+        <AuthCardUI title='Sign Up'>
+            <SignUpForm/>
+        </AuthCardUI>
     )
 }

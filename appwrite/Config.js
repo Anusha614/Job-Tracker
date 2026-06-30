@@ -49,28 +49,29 @@ export class Config {
     async GetApplication (documentId) {
         
         try {
-            await this.databases.getDocument (
+            return await this.databases.getDocument (
                 conf.appwriteDatabaseID,
                 conf.appwriteTableID,
                 documentId
             )
         } catch (error) {
-            console.log ("Config :: GetApplication :: error")
+            console.log ("Config :: GetApplication :: error",error)
             throw error
         }
     }
 
-    async UpdateApplications (userID, {company, status, role}) {
+    async UpdateApplications (documentId, {company, status, role}) {
 
         try {
            return await this.databases.updateDocument (
                 conf.appwriteDatabaseID,
                 conf.appwriteTableID,
+                documentId,
                 {company, status, role}
 
             )
         } catch (error) {
-            console.log ("Config :: UpdateApplications :: error")
+            console.log ("Config :: UpdateApplications :: error",error)
             throw error
         }
     }
